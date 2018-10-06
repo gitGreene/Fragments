@@ -22,16 +22,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void processDatePickerResult(int year, int month, int day) {
 
-        // The integer for month returned by date picker starts counting at 0 for January
-        // Hence adding 1 to the returned value
         String month_string = Integer.toString(month+1);
-
         String day_string = Integer.toString(day);
         String year_string = Integer.toString(year);
 
-        // Concatenating the strings for a Toast message
         String dateMessage = (month_string + "/" + day_string + "/" + year_string);
 
         Toast.makeText(this, getString(R.string.date) + dateMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showTimePicker(View view) {
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), getString(R.string.timepicker));
+    }
+
+
+    public void processTimePickerResult(int hourOfDay, int minute) {
+        String hourOfDayString = Integer.toString(hourOfDay);
+        String minuteString = Integer.toString(minute);
+
+        String timeMessage = (hourOfDayString + ":" + minuteString);
+
+        Toast.makeText(this, "Time: " + timeMessage, Toast.LENGTH_SHORT).show();
     }
 }
